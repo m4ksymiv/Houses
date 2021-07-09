@@ -23,10 +23,13 @@ export class UserRegisterComponent implements OnInit {
     });
   }
 
- //passwordMatchingValidator(fg: FormGroup): Validators {
- // return fg.get('password').value === fg.get('confirmPassword').value ? null :
- // {notmatched: true };
-//}
+
+ passwordMatchingValidator(fg: FormGroup): {[s:string]:boolean}|null {
+  if (fg.get('password')?.value === fg.get('confirmPassword')?.value) {
+    return {notmatched: true };
+  }
+  return null;
+}
 
  get userName(){
    return this.registerationForm.get('userName') as FormControl;
@@ -50,5 +53,6 @@ get mobile(){
 
   onSubmit(){
     console.log(this.registerationForm);
+    console.log(this.passwordMatchingValidator(this.registerationForm));
   }
 }
