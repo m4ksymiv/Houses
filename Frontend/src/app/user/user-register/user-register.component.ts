@@ -1,6 +1,7 @@
 import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-user-register',
@@ -10,11 +11,25 @@ import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Val
 export class UserRegisterComponent implements OnInit {
 
   registerationForm: FormGroup;
+  user: User;
+  userSubmitted : boolean;
 
-  constructor(private _fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.registerationForm = this._fb.group({
+ //   this.registerationForm = this.fb.group({
+ //     userName: [null, Validators.required],
+ //     email: [null, [Validators.required, Validators.email]],
+ //     password: [null, [Validators.required, Validators.minLength(8)]],
+ //     confirmPassword: [null, Validators.required],
+ //     mobile: [null, [Validators.required, Validators.minLength(10)]],
+ //   }, {validators: this.passwordMatchingValidator});
+ this.createRegisterationForm();
+  }
+
+
+  createRegisterationForm(){
+    this.registerationForm = this.fb.group({
       userName: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(8)]],
@@ -52,7 +67,25 @@ get mobile(){
 }
 
   onSubmit(){
-    console.log(this.registerationForm);
-    console.log(this.passwordMatchingValidator(this.registerationForm));
+    console.log(this.registerationForm.value);
+    this.userSubmitted = true;
+    if (this.registerationForm.valid) {
+     // this.user = Object.assign(this.user, this.registerationForm.value);
+      localStorage.setItem('Users', JSON.stringify(this.user));
+      this.registerationForm.reset();
+      this.userSubmitted = false;
+    }
   }
+
+
+  userData(): User{
+    return this.user = {
+      userName: this.userName.value,
+      email: this.email.value,
+      password: this.password.value,
+      mobile: this.mobile.value
+    }
+  }
+
+
 }
