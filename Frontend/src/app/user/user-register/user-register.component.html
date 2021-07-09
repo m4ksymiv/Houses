@@ -35,7 +35,9 @@
           <input type="password" class="form-control" formControlName="confirmPassword">
           <span *ngIf="!confirmPassword?.valid && confirmPassword?.touched" class="error-block">
             <span *ngIf="confirmPassword.hasError('required')"> Please confirm password</span>
-            <span *ngIf="!confirmPassword.hasError('notmatched') && confirmPassword.valid">Password not matched</span>
+          </span>
+          <span *ngIf="!registerationForm.hasError('notmatched') && confirmPassword.valid" class="error-block">
+              Password not matchedasd
           </span>
         </div>
 

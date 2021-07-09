@@ -19,7 +19,7 @@ export class UserRegisterComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(8)]],
       confirmPassword: [null, Validators.required],
-      mobile: [null, [Validators.required, Validators.maxLength(10)]],
+      mobile: [null, [Validators.required, Validators.minLength(10)]],
     }, {validators: this.passwordMatchingValidator});
   }
 
