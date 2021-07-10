@@ -1,5 +1,5 @@
 <div class="row mb-5">
-  <div class="col-8">
+  <div class="col-8 shadow-lg p-0 bg-white">
     <div class="card">
       <div class="card-header">
         <h3>List your property</h3>
@@ -7,37 +7,37 @@
       <div class="card-body">
         <form (ngSubmit)='onSubmit()' #Form="ngForm">
 
-          <div>
-            <tabset #formTabs>
+          <div class="tab-panel">
+            <tabset class="member-tabset" #formTabs>
 
-              <tab heading="Basic info">
+              <tab heading="Basic info" ngModelGroup="BasicInfo" #BasicInfo="ngModelGroup">
 
                 <div  class="form-group col-12">
                   <p>I want to</p>
-                  <div class="btn-group" btnRadioGroup>
+                  <div class="btn-group" btnRadioGroup ngModel name="SellRent" required>
                     <label class="btn btn-outline-primary" btnRadio=1 tabindex="0" role="button" name="Sell rent"> Sell</label>
-                    <label class="btn btn-outline-primary mx-2" btnRadio=2 tabindex="0" role="button" name="Sell rent"> Rent</label>
+                    <label class="btn btn-outline-primary mx-1" btnRadio=2 tabindex="0" role="button" name="Sell rent"> Rent</label>
                   </div>
                 </div>
 
                 <div  class="form-group col-12">
                   <p>BHK</p>
-                  <div class="btn-group" btnRadioGroup>
-                    <label *ngFor="let bnk of ['1','2','3','4']" class="btn btn-outline-primary mx-2" [btnRadio]="bnk" tabindex="0" role="button" name="Sell rent"> {{bnk}}</label>
+                  <div class="btn-group" btnRadioGroup name="BHK" [(ngModel)]="propertyView.BHK">
+                    <label *ngFor="let bnk of ['1','2','3','4']" class="btn btn-outline-primary mx-1" [btnRadio]="bnk" tabindex="0" role="button" name="Sell rent"> {{bnk}}</label>
                   </div>
                 </div>
 
                 <div  class="form-group col-12">
                   <p>Property Type</p>
-                  <div class="btn-group" btnRadioGroup name='propType' [(ngModel)]="propertyView.Type">
-                    <label *ngFor="let pType of propertyTypes" class="btn btn-outline-primary mx-2" [btnRadio]="pType" tabindex="0" role="button" name="Sell rent"> {{pType}}</label>
+                  <div class="btn-group" btnRadioGroup name='propType' [(ngModel)]="propertyView.PType">
+                    <label *ngFor="let pType of propertyTypes" class="btn btn-outline-primary mx-1" [btnRadio]="pType" tabindex="0" role="button" name="Sell rent"> {{pType}}</label>
                   </div>
                 </div>
 
                 <div  class="form-group col-12">
                   <p>Furnishing Type</p>
-                  <div class="btn-group" btnRadioGroup>
-                    <label *ngFor="let fType of furnishTypes" class="btn btn-outline-primary mx-2" [btnRadio]="fType" tabindex="0" role="button" name="Sell rent"> {{fType}}</label>
+                  <div class="btn-group" btnRadioGroup name="FType" [(ngModel)]="propertyView.FType">
+                    <label *ngFor="let fType of furnishTypes" class="btn btn-outline-primary mx-1" [btnRadio]="fType" tabindex="0" role="button" name="Sell rent"> {{fType}}</label>
                   </div>
                 </div>
 
@@ -52,11 +52,11 @@
 
                 <div class="form-group col-12">
                   <label for="price">City</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" name="City" [(ngModel)]="propertyView.City">
                 </div>
 
                 <div class="form-group col-12">
-                  <button type="button" class="btn btn-primary form-control mt-2" (click)='selectTab(1)'>Next</button>
+                  <button type="button" class="btn btn-primary form-control mt-2" (click)='selectTab(1)' [disabled]="!BasicInfo.valid">Next</button>
                 </div>
               </tab>
 
@@ -79,7 +79,7 @@
 
                 <div class="form-group col-12">
                   <label>Built Area (in Sqr Feet)</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" name="BuiltArea" [(ngModel)]="propertyView.BuiltArea">
                 </div>
 
                 <div class="form-group col-12">
@@ -91,7 +91,7 @@
                 <button type="button" class="btn btn-primary form-control mt-2" (click)='selectTab(0)'>Back</button>
               </tab>
 
-              <tab heading="Address">Address
+              <tab heading="Address">
 
                 <div class="form-group col-12">
                   <label>Floor</label>
@@ -123,7 +123,7 @@
                   <p>Ready to Move</p>
                   <div class="btn-group" btnRadioGroup>
                     <label class="btn btn-outline-primary" btnRadio=1 tabindex="0" role="button" name="RTM"> Yes</label>
-                    <label class="btn btn-outline-primary mx-2" btnRadio=2 tabindex="0" role="button" name="RTM"> No</label>
+                    <label class="btn btn-outline-primary mx-1" btnRadio=2 tabindex="0" role="button" name="RTM"> No</label>
                   </div>
                 </div>
 
@@ -141,14 +141,14 @@
                   <p>Gated Community</p>
                   <div class="btn-group" btnRadioGroup>
                     <label class="btn btn-outline-primary" btnRadio=1 tabindex="0" role="button" name="GM"> Yes</label>
-                    <label class="btn btn-outline-primary mx-2" btnRadio=2 tabindex="0" role="button" name="GM"> No</label>
+                    <label class="btn btn-outline-primary mx-1" btnRadio=2 tabindex="0" role="button" name="GM"> No</label>
                   </div>
                 </div>
 
                 <div  class="form-group col-12">
                   <p>Main Entrance</p>
                   <div class="btn-group" btnRadioGroup>
-                    <label *ngFor="let mEntr of MainEntrance" class="btn btn-outline-primary mx-2" [btnRadio]="mEntr" tabindex="0" role="button" name="ME"> {{mEntr}}</label>
+                    <label *ngFor="let mEntr of MainEntrance" class="btn btn-outline-primary mx-1" [btnRadio]="mEntr" tabindex="0" role="button" name="ME"> {{mEntr}}</label>
                   </div>
                 </div>
 
@@ -161,7 +161,7 @@
                 <button type="button" class="btn btn-primary form-control mt-2" (click)='selectTab(2)'>Back</button>
               </tab>
 
-              <tab heading="Photos">Upload photos
+              <tab heading="Photos">
 
                 <div class="form-group col-12">
                   <div class="photo-control">
@@ -183,9 +183,9 @@
   <div class="col-4">
     <div class="card-header">
     <h3>Your property preview</h3>
-    <div>
-      <app-property-card [property]="propertyView"></app-property-card>
     </div>
-  </div>
+    <div class="shadow-lg p-3 bg-white">
+      <app-property-card [property]="propertyView" [hideIcons]="true"></app-property-card>
+    </div>
   </div>
 </div>
