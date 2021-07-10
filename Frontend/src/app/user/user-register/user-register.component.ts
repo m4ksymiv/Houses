@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { User } from 'src/app/model/user';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-user-register',
@@ -15,7 +16,7 @@ export class UserRegisterComponent implements OnInit {
   user: User;
   userSubmitted : boolean;
 
-  constructor(private fb: FormBuilder, private alertify: AlertifyService) { }
+  constructor(private fb: FormBuilder, private userservice: UserServiceService, private alertify: AlertifyService) { }
 
   ngOnInit() {
  //   this.registerationForm = this.fb.group({
@@ -72,7 +73,7 @@ get mobile(){
     this.userSubmitted = true;
     if (this.registerationForm.valid) {
      // this.user = Object.assign(this.user, this.registerationForm.value);
-      localStorage.setItem('Users', JSON.stringify(this.user));
+      this.userservice.addUser(this.userData());
       this.registerationForm.reset();
       this.userSubmitted = false;
       this.alertify.success('Successfully registered')
