@@ -8,5 +8,13 @@
 
 button{
   margin-right: 5px;
-  margin-top: 15px;
+
+}
+
+.btn-group > label[ng-reflect-btn-radio]{
+  margin-top: -15px;
+  margin-bottom: 15px;
+  border-radius: 44px;
+  padding: 0 15px;
+  line-height: 30px;
 }
