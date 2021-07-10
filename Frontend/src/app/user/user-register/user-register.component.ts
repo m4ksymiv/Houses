@@ -2,6 +2,7 @@ import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { User } from 'src/app/model/user';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-user-register',
@@ -14,7 +15,7 @@ export class UserRegisterComponent implements OnInit {
   user: User;
   userSubmitted : boolean;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private alertify: AlertifyService) { }
 
   ngOnInit() {
  //   this.registerationForm = this.fb.group({
@@ -74,6 +75,9 @@ get mobile(){
       localStorage.setItem('Users', JSON.stringify(this.user));
       this.registerationForm.reset();
       this.userSubmitted = false;
+      this.alertify.success('Successfully registered')
+    }else{
+      this.alertify.error('Fill in required fields')
     }
   }
 
