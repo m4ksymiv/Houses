@@ -26,14 +26,14 @@ export class AddPropertyComponent implements OnInit {
 
   propertyTypes: Array<string> = ['House','Apartment','Duplex'];
   furnishTypes: Array<string> = ['Fully','Semi','Unfurnished'];
-  mainEntrance: Array<string> = ['East','West','South', 'North'];
+  MainEntranceitem: Array<string> = ['East','West','South', 'North'];
   BHKitem: Array<string> = ['1','2','3','4'];
 
   propertyView: IPropertyBase = {
     Id: '',
     Name: '',
     Price: '',
-    Sellrent: 5,
+    SellRent: -1,
     PType: '',
     FType: '',
     BHK: '',
@@ -66,7 +66,7 @@ export class AddPropertyComponent implements OnInit {
       PriceInfo: this.fb.group({
         Price: [null, Validators.required],
         BuiltArea: [null, Validators.required],
-        CarperArea: [null],
+        CarpetArea: [null],
         Security: [null],
         Maintenance: [null]
       }),
@@ -74,13 +74,13 @@ export class AddPropertyComponent implements OnInit {
       AddressInfo: this.fb.group({
         FloorNo: [null],
         TotalFloor: [null],
-        Address: [null],
+        Address: [null, Validators.required],
         LandMark: [null],
       }),
 
       OtherInfo: this.fb.group({
-          RTM: [null],
-          PossessionOn: [null],
+          RTM: [null, Validators.required],
+          PossessionOn: [null, Validators.required],
           AOP: [null],
           Gated: [null],
           MainEntrance: [null],
@@ -214,37 +214,34 @@ export class AddPropertyComponent implements OnInit {
       }else{
         this.router.navigate(['/rent-prop'])
       }
-
-
     }else{
      this.alertify.error('Please review the form and provide all valid entries')
-      console.log(this.SellRent.value)
+
     }
   }
 
   mapProperty(): void {
-    this.property.Sellrent = +this.SellRent.value;
+    this.property.SellRent = +this.SellRent.value;
     this.property.BHK = this.BHK.value;
     this.property.PType = this.PType.value;
+    this.property.FType = this.FType.value;
     this.property.Name = this.Name.value;
-    // this.property.City = this.City.value;
-    // this.property.FType = this.FType.value;
-    // this.property.Price = this.Price.value;
-    // this.property.Security = this.Security.value;
-    // this.property.Maintenance = this.Maintenance.value;
-    // this.property.BuiltArea = this.BuiltArea.value;
-    // this.property.CarpetArea = this.CarpetArea.value;
-    // this.property.FloorNo = this.FloorNo.value;
-    // this.property.TotalFloor = this.TotalFloor.value;
-    // this.property.Address = this.Address.value;
-    // this.property.Address2 = this.LandMark.value;
-    // this.property.RTM = this.RTM.value;
-    // this.property.AOP = this.AOP.value;
-    // this.property.Gated = this.Gated.value;
-    // this.property.MainEntrance = this.MainEntrance.value;
-    // this.property.Possession = this.PossessionOn.value;
-    // this.property.Description = this.Description.value;
-    // this.property.PostedOn = new Date().toString();
+    this.property.City = this.City.value;
+    this.property.Price = this.Price.value;
+    this.property.BuiltArea = this.BuiltArea.value;
+    this.property.CarpetArea = this.CarpetArea.value;
+    this.property.Security = this.Security.value;
+    this.property.Maintenance = this.Maintenance.value;
+    this.property.FloorNo = this.FloorNo.value;
+    this.property.TotalFloor = this.TotalFloor.value;
+    this.property.Address = this.Address.value;
+    this.property.LandMark = this.LandMark.value;
+    this.property.RTM = this.RTM.value;
+    this.property.PossessionOn = this.PossessionOn.value;
+    this.property.AOP = this.AOP.value;
+    this.property.Gated = this.Gated.value;
+    this.property.MainEntrance = this.MainEntrance.value;
+    this.property.Description = this.Description.value;
   }
 
   allTabsValid(): boolean {
