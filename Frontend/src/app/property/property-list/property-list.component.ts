@@ -13,6 +13,11 @@ export class PropertyListComponent implements OnInit {
 
   SellRent: number = 1;
   properties: Array<IPropertyBase>;
+  Today = new Date();
+  City = '';
+  SearchCity = '';
+  SortbyParam = '';
+  SortDirection = 'asc';
 
 
 
@@ -33,17 +38,23 @@ export class PropertyListComponent implements OnInit {
         console.log(data);
         }
     )
+  }
 
+  onCityFilter(){
+    this.SearchCity = this.City;
+  }
 
+  onCityFilterClear(){
+    this.SearchCity = '';
+    this.City = '';
+  }
 
-
-//    this.http.get('data/properties.json').subscribe(
-//      data=>{
-//        this.properties=data;
-//      }
-//    )
-
-
+  onSortDirection(){
+    if (this.SortDirection === 'desc') {
+      this.SortDirection = 'asc'
+    }else{
+      this.SortDirection = 'desc'
+    }
 
   }
 
