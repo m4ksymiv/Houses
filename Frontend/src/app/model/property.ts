@@ -2,6 +2,7 @@ import { IPropertyBase } from "./ipropertybase";
 
 export class Property implements IPropertyBase{
   Id: number;
+  Image:string;
   SellRent: number;
   BHK: string;
   PType: string;
@@ -16,6 +17,7 @@ export class Property implements IPropertyBase{
   FloorNo:string;
   TotalFloor:string;
   Address:string;
+  Address2:string;
   LandMark:string;
   RTM:string;
   PossessionOn:string;

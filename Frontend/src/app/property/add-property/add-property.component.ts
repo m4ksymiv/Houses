@@ -210,9 +210,9 @@ export class AddPropertyComponent implements OnInit {
       console.log(this.addPropertyForm);
 
       if (this.SellRent.value === '2') {
-        this.router.navigate(['/rent-prop'])
+        this.router.navigate(['/rent-property'])
       }else{
-        this.router.navigate(['/rent-prop'])
+        this.router.navigate(['/'])
       }
     }else{
      this.alertify.error('Please review the form and provide all valid entries')
