@@ -12,22 +12,47 @@ export class HousingService {
 
   constructor(private http:HttpClient) { }
 
-  getAllproperties(SellRent: number): Observable<IPropertyBase[]>{
+  getAllproperties(SellRent: number): Observable<IPropertyBase[]> {
     return this.http.get('data/properties.json').pipe(
-      map((data:any) => {
-        const propertiesArray: Array<IPropertyBase> = [];
-        for (const id in data) {
-          if(data.hasOwnProperty(id) && data[id].SellRent === SellRent){
-            propertiesArray.push(data[id]);
+      map((data: any) => {
+      const propertiesArray: Array<IPropertyBase> = [];
+      const localProperties = JSON.parse(localStorage.getItem('newProp') || '{}');
+
+      if (localProperties) {
+        for (const id in localProperties) {
+          if (localProperties.hasOwnProperty(id) && localProperties[id].SellRent === SellRent) {
+            propertiesArray.push(localProperties[id]);
           }
         }
-        return propertiesArray;
+      }
+
+      for (const id in data) {
+        if (data.hasOwnProperty(id) && data[id].SellRent === SellRent) {
+          propertiesArray.push(data[id]);
+        }
+      }
+
+      return propertiesArray;
       })
     );
   }
 
-  addProperty(property: Property){
-    localStorage.setItem('newProp', JSON.stringify(property));
+  addProperty(property: Property) {
+    let newProp = [property];
+    if (localStorage.getItem('newProp')) {
+      newProp = [property, ...JSON.parse(localStorage.getItem('newProp') || '{}')];
+    }
+    localStorage.setItem('newProp', JSON.stringify(newProp));
   }
 
+
+  newPropID(){
+    if (localStorage.getItem('PID')) {
+      localStorage.setItem('PID', String(+(localStorage.getItem('PID') || '{}') +1 ));
+      return +(localStorage.getItem('PID') || '{}')
+    }else{
+      localStorage.setItem('PID', '101')
+      return 101;
+    }
+  }
 }

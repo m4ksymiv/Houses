@@ -1,5 +1,5 @@
 export interface IPropertyBase{
-  Id: string;
+  Id: number;
   SellRent: number;
   Name: string;
   PType: string;

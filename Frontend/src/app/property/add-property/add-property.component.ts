@@ -30,7 +30,7 @@ export class AddPropertyComponent implements OnInit {
   BHKitem: Array<string> = ['1','2','3','4'];
 
   propertyView: IPropertyBase = {
-    Id: '',
+    Id: -1,
     Name: '',
     Price: '',
     SellRent: -1,
@@ -221,6 +221,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
   mapProperty(): void {
+    this.property.Id = this.housingServise.newPropID();
     this.property.SellRent = +this.SellRent.value;
     this.property.BHK = this.BHK.value;
     this.property.PType = this.PType.value;
