@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Angular\\Houses\\WebAPI\\WebApi.csproj": {}
+    "D:\\Angular\\Houses\\webapi\\WebApi.csproj": {}
   },
   "projects": {
-    "D:\\Angular\\Houses\\WebAPI\\WebApi.csproj": {
+    "D:\\Angular\\Houses\\webapi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Angular\\Houses\\WebAPI\\WebApi.csproj",
+        "projectUniqueName": "D:\\Angular\\Houses\\webapi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "D:\\Angular\\Houses\\WebAPI\\WebApi.csproj",
+        "projectPath": "D:\\Angular\\Houses\\webapi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\38097\\.nuget\\packages\\",
-        "outputPath": "D:\\Angular\\Houses\\WebAPI\\obj\\",
+        "outputPath": "D:\\Angular\\Houses\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\38097\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,20 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
