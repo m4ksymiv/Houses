@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApi.Data.Context;
+using WebApi.Interfaces;
 using WebApi.Models;
 
 namespace WebApi.Data.Repository
@@ -9,7 +10,6 @@ namespace WebApi.Data.Repository
     public class CityRepository : ICityRepository
     {
         private readonly DataContext dc;
-
         public CityRepository(DataContext dc)
         {
             this.dc = dc;
@@ -28,11 +28,6 @@ namespace WebApi.Data.Repository
         public async Task<IEnumerable<City>> GetCitiesAsync()
         {
             return await dc.Cities.ToListAsync();
-        }
-
-        public async Task<bool> SaveAsync()
-        {
-            return await dc.SaveChangesAsync() > 0;
         }
     }
 }

@@ -4,8 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApi.Data;
 using WebApi.Data.Context;
-using WebApi.Data.Repository;
+using WebApi.Interfaces;
 
 namespace WebApi
 {
@@ -24,7 +25,7 @@ namespace WebApi
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddControllers();
             services.AddCors();
-            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
            
         }
 
