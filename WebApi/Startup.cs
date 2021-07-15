@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApi.Data;
 using WebApi.Data.Context;
+using WebApi.Helpers;
 using WebApi.Interfaces;
 
 namespace WebApi
@@ -25,6 +26,7 @@ namespace WebApi
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddControllers();
             services.AddCors();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
            
         }
