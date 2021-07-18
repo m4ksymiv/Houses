@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Angular\\Houses\\webapi\\WebApi.csproj": {}
+    "D:\\Angular\\Houses\\WEbapi\\WebApi.csproj": {}
   },
   "projects": {
-    "D:\\Angular\\Houses\\webapi\\WebApi.csproj": {
+    "D:\\Angular\\Houses\\WEbapi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Angular\\Houses\\webapi\\WebApi.csproj",
+        "projectUniqueName": "D:\\Angular\\Houses\\WEbapi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "D:\\Angular\\Houses\\webapi\\WebApi.csproj",
+        "projectPath": "D:\\Angular\\Houses\\WEbapi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\38097\\.nuget\\packages\\",
-        "outputPath": "D:\\Angular\\Houses\\webapi\\obj\\",
+        "outputPath": "D:\\Angular\\Houses\\WEbapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\38097\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[8.1.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.8, )"
             },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
@@ -95,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

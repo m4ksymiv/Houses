@@ -1,18 +1,17 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Net;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WebApi.Data;
 using WebApi.Data.Context;
 using WebApi.Extensions;
 using WebApi.Helpers;
 using WebApi.Interfaces;
-using WebApi.Middlewares;
+
 
 namespace WebApi
 {
@@ -33,6 +32,18 @@ namespace WebApi
             services.AddCors();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            var secretKey = Configuration.GetSection("AppSettings:Key").Value;
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => {
+                opt.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    IssuerSigningKey = key
+                };
+            });
            
         }
 
@@ -44,8 +55,11 @@ namespace WebApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();    
 
             app.UseEndpoints(endpoints =>
             {
