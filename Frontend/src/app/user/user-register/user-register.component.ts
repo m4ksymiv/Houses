@@ -77,9 +77,6 @@ get mobile(){
         this.registerationForm.reset();
         this.userSubmitted = false;
        this.alertify.success('Congrats, you are successfully registered')
-      }, error => {
-        console.log(error);
-        this.alertify.error(error.error)
       });
     }
   }

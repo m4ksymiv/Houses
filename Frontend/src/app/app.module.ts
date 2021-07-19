@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule, Routes } from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -23,6 +23,7 @@ import { AuthService } from './services/auth.service';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
+import { HttperrorInterceptorService } from './services/httperror-interceptor.service';
 
 
 
@@ -65,6 +66,11 @@ const appRoutes: Routes = [
     NgxGalleryModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttperrorInterceptorService,
+      multi: true
+    },
     HousingService,
     AlertifyService,
     AuthService
