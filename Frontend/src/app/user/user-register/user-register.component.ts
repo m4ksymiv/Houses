@@ -1,9 +1,9 @@
 import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { User } from 'src/app/model/user';
+import { UserForRegister } from 'src/app/model/user';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { UserServiceService } from 'src/app/services/user-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-register',
@@ -13,10 +13,10 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 export class UserRegisterComponent implements OnInit {
 
   registerationForm: FormGroup;
-  user: User;
+  user: UserForRegister;
   userSubmitted : boolean;
 
-  constructor(private fb: FormBuilder, private userservice: UserServiceService, private alertify: AlertifyService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
  //   this.registerationForm = this.fb.group({
@@ -73,17 +73,19 @@ get mobile(){
     this.userSubmitted = true;
     if (this.registerationForm.valid) {
      // this.user = Object.assign(this.user, this.registerationForm.value);
-      this.userservice.addUser(this.userData());
-      this.registerationForm.reset();
-      this.userSubmitted = false;
-      this.alertify.success('Successfully registered')
-    }else{
-      this.alertify.error('Fill in required fields')
+      this.authService.registerUser(this.userData()).subscribe(() => {
+        this.registerationForm.reset();
+        this.userSubmitted = false;
+       this.alertify.success('Congrats, you are successfully registered')
+      }, error => {
+        console.log(error);
+        this.alertify.error(error.error)
+      });
     }
   }
 
 
-  userData(): User{
+  userData(): UserForRegister{
     return this.user = {
       userName: this.userName.value,
       email: this.email.value,
