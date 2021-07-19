@@ -42,6 +42,21 @@ namespace WebApi.Controllers
             return Ok(loginRes);
         }
 
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(LogitReqDto loginReq)
+        {
+            if (await uow.UserRepository.UserAlreadyExist(loginReq.UserName))
+            {
+                return BadRequest("User aleready exists, please try something else");
+            }
+            else
+            {
+                uow.UserRepository.Register(loginReq.UserName, loginReq.Password);
+                await uow.SaveAsync();
+                return StatusCode(201);
+            }
+        }
+
 
         private string CreateJWT(User user)
         {

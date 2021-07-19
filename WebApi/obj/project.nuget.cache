@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DDMiIh4eZLhY8HI2EZXg8O6vI6XjDFqNRXb+Fj/1Ar5MVQxvlfmpMfXsJ724S+voRwzBfOq6sAOHA7uZCSrlMw==",
+  "dgSpecHash": "9Vh6qL87OSIp3a/MdUTb9IhIqBPX8idkf3AqPQiiqZRiAN6aCLtYmYHQlxYc6Xly7p5Orw61PWaQxcqLB0u8kg==",
   "success": true,
-  "projectFilePath": "D:\\Angular\\Houses\\WEbapi\\WebApi.csproj",
+  "projectFilePath": "D:\\Angular\\Houses\\webapi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\38097\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

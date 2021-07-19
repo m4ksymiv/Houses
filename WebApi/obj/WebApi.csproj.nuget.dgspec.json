@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Angular\\Houses\\WEbapi\\WebApi.csproj": {}
+    "D:\\Angular\\Houses\\webapi\\WebApi.csproj": {}
   },
   "projects": {
-    "D:\\Angular\\Houses\\WEbapi\\WebApi.csproj": {
+    "D:\\Angular\\Houses\\webapi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Angular\\Houses\\WEbapi\\WebApi.csproj",
+        "projectUniqueName": "D:\\Angular\\Houses\\webapi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "D:\\Angular\\Houses\\WEbapi\\WebApi.csproj",
+        "projectPath": "D:\\Angular\\Houses\\webapi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\38097\\.nuget\\packages\\",
-        "outputPath": "D:\\Angular\\Houses\\WEbapi\\obj\\",
+        "outputPath": "D:\\Angular\\Houses\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\38097\\AppData\\Roaming\\NuGet\\NuGet.Config",
