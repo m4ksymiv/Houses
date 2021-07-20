@@ -10,20 +10,20 @@ export class Property implements IPropertyBase{
   city: string;
   price: string;
   builtArea: string;
-  CarpetArea: string;
-  Security: string;
-  Maintenance: string;
-  FloorNo:string;
-  TotalFloor:string;
-  Address:string;
-  Address2:string;
-  LandMark:string;
+  carpetArea: string;
+  security: string;
+  maintenance: string;
+  floorNo:string;
+  totalFloor:string;
+  address:string;
+  address2:string;
+  landMark:string;
   rTM:string;
-  PossessionOn:string;
-  AOP:string;
-  Gated:string;
-  MainEntrance:string;
-  Description:string;
+  possessionOn:Date;
+  aOP:string;
+  gated:string;
+  mainEntrance:string;
+  description:string;
   image:string;
 
 }

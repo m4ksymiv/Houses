@@ -236,19 +236,19 @@ export class AddPropertyComponent implements OnInit {
     this.property.city = this.City.value;
     this.property.price = this.Price.value;
     this.property.builtArea = this.BuiltArea.value;
-    this.property.CarpetArea = this.CarpetArea.value;
-    this.property.Security = this.Security.value;
-    this.property.Maintenance = this.Maintenance.value;
-    this.property.FloorNo = this.FloorNo.value;
-    this.property.TotalFloor = this.TotalFloor.value;
-    this.property.Address = this.Address.value;
-    this.property.LandMark = this.LandMark.value;
+    this.property.carpetArea = this.CarpetArea.value;
+    this.property.security = this.Security.value;
+    this.property.maintenance = this.Maintenance.value;
+    this.property.floorNo = this.FloorNo.value;
+    this.property.totalFloor = this.TotalFloor.value;
+    this.property.address = this.Address.value;
+    this.property.landMark = this.LandMark.value;
     this.property.rTM = this.RTM.value;
-    this.property.PossessionOn = this.PossessionOn.value;
-    this.property.AOP = this.AOP.value;
-    this.property.Gated = this.Gated.value;
-    this.property.MainEntrance = this.MainEntrance.value;
-    this.property.Description = this.Description.value;
+    this.property.possessionOn = this.PossessionOn.value;
+    this.property.aOP = this.AOP.value;
+    this.property.gated = this.Gated.value;
+    this.property.mainEntrance = this.MainEntrance.value;
+    this.property.description = this.Description.value;
   }
 
   allTabsValid(): boolean {

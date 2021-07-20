@@ -40,22 +40,24 @@ export class PropertyDetailComponent implements OnInit {
             this.property.price = data.Price;
             this.property.city = data.City;
             this.property.builtArea = data.BuiltArea;
-            this.property.CarpetArea = data.CarpetArea;
+            this.property.carpetArea = data.CarpetArea;
             this.property.furnishingType = data.FType;
-            this.property.FloorNo = data.FloorNo;
-            this.property.AOP = data.AOP;
-            this.property.PossessionOn = data.PossessionOn;
-            this.property.MainEntrance = data.MainEntrance;
-            this.property.Gated = data.Gated;
-            this.property.Security = data.Security;
-            this.property.Maintenance = data.Maintenance;
-            this.property.Description = data.Description;
-            this.property.Address = data.Address;
-            this.property.Address2 = data.Address2;
+            this.property.floorNo = data.FloorNo;
+            this.property.aOP = data.AOP;
+            this.property.possessionOn = data.PossessionOn;
+            this.property.mainEntrance = data.MainEntrance;
+            this.property.gated = data.Gated;
+            this.property.security = data.Security;
+            this.property.maintenance = data.Maintenance;
+            this.property.description = data.Description;
+            this.property.address = data.Address;
+            this.property.address2 = data.Address2;
           }
         )
       }
     );
+
+    this.property.aOP = this.housingService.getPropertyAge(this.property.possessionOn);
 
 
     this.galleryOptions = [
