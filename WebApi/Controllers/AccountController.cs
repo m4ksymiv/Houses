@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApi.Dtos;
 using WebApi.Errors;
+using WebApi.Extensions;
 using WebApi.Interfaces;
 using WebApi.Models;
 
@@ -53,6 +54,14 @@ namespace WebApi.Controllers
         {
             ApiError apiError = new ApiError();
 
+            if (loginReq.UserName.isEmpty() || loginReq.Password.isEmpty())
+            {
+                apiError.ErrorCode = BadRequest().StatusCode;
+                apiError.ErrorMessage = "User name or password can not be blank";
+                return BadRequest(apiError);
+            }
+
+          
             if (await uow.UserRepository.UserAlreadyExist(loginReq.UserName))
             {
                 apiError.ErrorCode = BadRequest().StatusCode;
