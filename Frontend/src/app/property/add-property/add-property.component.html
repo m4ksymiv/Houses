@@ -22,7 +22,7 @@
 
                 <div  class="form-group col-12">
                   <p>BHK</p>
-                  <div class="btn-group" btnRadioGroup formControlName="BHK" [(ngModel)]="propertyView.BHK">
+                  <div class="btn-group" btnRadioGroup formControlName="BHK" [(ngModel)]="propertyView.bHK">
                     <label *ngFor="let bnk of BHKitem" class="btn btn-outline-primary mx-1" [btnRadio]="bnk" tabindex="0" role="button" name="Sell rent"> {{bnk}}</label>
                   </div>
                   <div  class="error-block" *ngIf="BHK.invalid && nextClicked">
@@ -32,7 +32,7 @@
 
                 <div  class="form-group col-12">
                   <p>Property Type</p>
-                  <div class="btn-group" btnRadioGroup formControlName='PType'  [(ngModel)]="propertyView.PType">
+                  <div class="btn-group" btnRadioGroup formControlName='PType'  [(ngModel)]="propertyView.propertyType">
                     <label *ngFor="let pType of propertyTypes" class="btn btn-outline-primary mx-1" [btnRadio]="pType" tabindex="0" role="button" name="Sell rent"> {{pType}}</label>
                   </div>
                   <div class="error-block" *ngIf="FType.invalid && nextClicked">
@@ -42,7 +42,7 @@
 
                 <div  class="form-group col-12">
                   <p>Furnishing Type</p>
-                  <div class="btn-group" btnRadioGroup formControlName="FType" [(ngModel)]="propertyView.FType">
+                  <div class="btn-group" btnRadioGroup formControlName="FType" [(ngModel)]="propertyView.furnishingType">
                     <label *ngFor="let fType of furnishTypes" class="btn btn-outline-primary mx-1" [btnRadio]="fType" tabindex="0" role="button" name="Sell rent"> {{fType}}</label>
                   </div>
                   <div class="error-block" *ngIf="FType.invalid && nextClicked">
@@ -52,7 +52,7 @@
 
                 <div class="form-group col-12">
                   <label for="name">in Building/Society/Project</label>
-                  <input type="text" class="form-control"  formControlName="Name" [(ngModel)]="propertyView.Name">
+                  <input type="text" class="form-control"  formControlName="Name" [(ngModel)]="propertyView.name">
                   <div  class="error-block" *ngIf="Name.invalid && (nextClicked || Name.touched)">
                     Please select building, society or project name
                   </div>
@@ -60,7 +60,7 @@
 
                 <div class="form-group col-12">
                   <label for="price">City</label>
-                  <select class="form-control" formControlName="City" [(ngModel)]="propertyView.City">
+                  <select class="form-control" formControlName="City" [(ngModel)]="propertyView.city">
                     <option value="">--Select City --</option>
                     <option *ngFor="let city of cityList" value={{city.id}}>{{city.name}}</option>
                   </select>
@@ -79,7 +79,7 @@
                 <div class="form-group col-12">
                   <label *ngIf="SellRent.value==1">Price (in USD)</label>
                   <label *ngIf="SellRent.value==2">Rent (in USD)</label>
-                  <input type="text" class="form-control" formControlName="Price" [(ngModel)]="propertyView.Price">
+                  <input type="text" class="form-control" formControlName="Price" [(ngModel)]="propertyView.price">
                   <div class="error-block" *ngIf="Price.invalid && (nextClicked || Price.touched)">
                     Please select
                     <span *ngIf="SellRent.value==1;else ShowRent">price</span>
@@ -101,7 +101,7 @@
 
                 <div class="form-group col-12">
                   <label>Built Area (in Sqr Feet)</label>
-                  <input type="text" class="form-control" formControlName="BuiltArea" [(ngModel)]="propertyView.BuiltArea">
+                  <input type="text" class="form-control" formControlName="BuiltArea" [(ngModel)]="propertyView.builtArea">
                   <div  class="error-block" *ngIf="BuiltArea.invalid && (nextClicked || BuiltArea.touched)">
                     Please select built up area
                   </div>

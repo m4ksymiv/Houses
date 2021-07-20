@@ -31,16 +31,16 @@ export class AddPropertyComponent implements OnInit {
   cityList: any[];
 
   propertyView: IPropertyBase = {
-    Id: -1,
-    Name: '',
-    Price: '',
-    SellRent: -1,
-    PType: '',
-    FType: '',
-    BHK: '',
-    BuiltArea: '',
-    City: '',
-    RTM: '',
+    id: -1,
+    name: '',
+    price: '',
+    sellRent: -1,
+    propertyType: '',
+    furnishingType: '',
+    bHK: '',
+    builtArea: '',
+    city: '',
+    rTM: '',
   };
 
 
@@ -227,15 +227,15 @@ export class AddPropertyComponent implements OnInit {
   }
 
   mapProperty(): void {
-    this.property.Id = this.housingServise.newPropID();
-    this.property.SellRent = +this.SellRent.value;
-    this.property.BHK = this.BHK.value;
-    this.property.PType = this.PType.value;
-    this.property.FType = this.FType.value;
-    this.property.Name = this.Name.value;
-    this.property.City = this.City.value;
-    this.property.Price = this.Price.value;
-    this.property.BuiltArea = this.BuiltArea.value;
+    this.property.id = this.housingServise.newPropID();
+    this.property.sellRent = +this.SellRent.value;
+    this.property.bHK = this.BHK.value;
+    this.property.propertyType = this.PType.value;
+    this.property.furnishingType = this.FType.value;
+    this.property.name = this.Name.value;
+    this.property.city = this.City.value;
+    this.property.price = this.Price.value;
+    this.property.builtArea = this.BuiltArea.value;
     this.property.CarpetArea = this.CarpetArea.value;
     this.property.Security = this.Security.value;
     this.property.Maintenance = this.Maintenance.value;
@@ -243,7 +243,7 @@ export class AddPropertyComponent implements OnInit {
     this.property.TotalFloor = this.TotalFloor.value;
     this.property.Address = this.Address.value;
     this.property.LandMark = this.LandMark.value;
-    this.property.RTM = this.RTM.value;
+    this.property.rTM = this.RTM.value;
     this.property.PossessionOn = this.PossessionOn.value;
     this.property.AOP = this.AOP.value;
     this.property.Gated = this.Gated.value;

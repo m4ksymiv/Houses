@@ -33,15 +33,15 @@ export class PropertyDetailComponent implements OnInit {
         this.propertyId = +params['id']
         this.housingService.getProperty(this.propertyId).subscribe(
           (data: any) => {
-            this.property.Image = data.Image;
-            this.property.Name = data.Name;
-            this.property.BHK = data.BHK;
-            this.property.PType = data.PType;
-            this.property.Price = data.Price;
-            this.property.City = data.City;
-            this.property.BuiltArea = data.BuiltArea;
+            this.property.image = data.Image;
+            this.property.name = data.Name;
+            this.property.bHK = data.BHK;
+            this.property.propertyType = data.PType;
+            this.property.price = data.Price;
+            this.property.city = data.City;
+            this.property.builtArea = data.BuiltArea;
             this.property.CarpetArea = data.CarpetArea;
-            this.property.FType = data.FType;
+            this.property.furnishingType = data.FType;
             this.property.FloorNo = data.FloorNo;
             this.property.AOP = data.AOP;
             this.property.PossessionOn = data.PossessionOn;
