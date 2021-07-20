@@ -2,7 +2,6 @@ import { IPropertyBase } from "./ipropertybase";
 
 export class Property implements IPropertyBase{
   Id: number;
-  Image:string;
   SellRent: number;
   BHK: string;
   PType: string;
@@ -25,5 +24,6 @@ export class Property implements IPropertyBase{
   Gated:string;
   MainEntrance:string;
   Description:string;
+  Image:string;
 
 }
