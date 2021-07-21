@@ -35,13 +35,13 @@ export class PropertyDetailComponent implements OnInit {
           (data: any) => {
             this.property.image = data.Image;
             this.property.name = data.Name;
-            this.property.bHK = data.BHK;
-            this.property.propertyType = data.PType;
+            this.property.bhk = data.BHK;
+            this.property.propertyTypes = data.PType;
             this.property.price = data.Price;
             this.property.city = data.City;
             this.property.builtArea = data.BuiltArea;
             this.property.carpetArea = data.CarpetArea;
-            this.property.furnishingType = data.FType;
+            this.property.furnishingTypes = data.FType;
             this.property.floorNo = data.FloorNo;
             this.property.aOP = data.AOP;
             this.property.possessionOn = data.PossessionOn;

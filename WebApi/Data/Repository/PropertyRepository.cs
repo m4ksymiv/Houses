@@ -21,7 +21,7 @@ namespace WebApi.Data.Repository
 
         public void AddProperty(Property property)
         {
-            throw new NotImplementedException();
+            dc.Properties.Add(property);
         }
 
         public void DeleteProperty(int id)

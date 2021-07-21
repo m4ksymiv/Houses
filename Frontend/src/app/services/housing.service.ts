@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IPropertyBase } from '../model/ipropertybase';
 import { Property } from '../model/property';
 import { environment } from "../../environments/environment";
+import { Ikeyvaluepair } from '../model/ikeyvaluepair';
 
 @Injectable({
   providedIn: 'root'
@@ -17,23 +18,27 @@ export class HousingService {
   constructor(private http:HttpClient) { }
 
   getAllCities() : Observable<string[]>{
-    return this.http.get<string[]>('http://localhost:5000/api/city')
+    return this.http.get<string[]>(this.baseUrl + '/city/')
   }
 
-  getProperty(id:number){
-    return this.http.get<Property>(this.baseUrl = '/property/detail/' + id.toString());
+  getPropertyTypes() : Observable<Ikeyvaluepair[]>{
+    return this.http.get<Ikeyvaluepair[]>(this.baseUrl + '/propertytype/list')
   }
+
+  getFurnishingTypes() : Observable<Ikeyvaluepair[]>{
+    return this.http.get<Ikeyvaluepair[]>(this.baseUrl + '/furnishingtypes/list')
+  }
+
+  getProperty(id: number) {
+    return this.http.get<Property>(this.baseUrl + '/property/detail/' +id.toString());
+}
 
   getAllProperties(SellRent?: number): Observable<Property[]> {
     return this.http.get<Property[]>(this.baseUrl + '/property/list/'+ SellRent?.toString());
   }
 
   addProperty(property: Property) {
-    let newProp = [property];
-    if (localStorage.getItem('newProp')) {
-      newProp = [property, ...JSON.parse(localStorage.getItem('newProp') || '{}')];
-    }
-    localStorage.setItem('newProp', JSON.stringify(newProp));
+    return this.http.post(this.baseUrl + '/property/add',property);
   }
 
 
@@ -47,7 +52,7 @@ export class HousingService {
     }
   }
 
-  getPropertyAge(dateOfEstablishment: Date): string{
+  getPropertyAge(dateOfEstablishment: string): string{
     const today = new Date();
     const estDate = new Date(dateOfEstablishment);
     let age = today.getFullYear() - estDate.getFullYear();

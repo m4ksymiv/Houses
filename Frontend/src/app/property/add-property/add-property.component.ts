@@ -1,7 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
+import { Ikeyvaluepair } from 'src/app/model/ikeyvaluepair';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
 import { Property } from 'src/app/model/property';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -24,8 +26,8 @@ export class AddPropertyComponent implements OnInit {
   property = new Property();
 
 
-  propertyTypes: Array<string> = ['House','Apartment','Duplex'];
-  furnishTypes: Array<string> = ['Fully','Semi','Unfurnished'];
+  propertyTypes: Ikeyvaluepair[];
+  furnishingTypes: Ikeyvaluepair[];
   MainEntranceitem: Array<string> = ['East','West','South', 'North'];
   BHKitem: Array<string> = ['1','2','3','4'];
   cityList: any[];
@@ -35,16 +37,17 @@ export class AddPropertyComponent implements OnInit {
     name: '',
     price: '',
     sellRent: -1,
-    propertyType: '',
-    furnishingType: '',
-    bHK: '',
+    propertyTypes: '',
+    furnishingTypes: '',
+    bhk: '',
     builtArea: '',
     city: '',
-    rTM: '',
+    rtm: '',
   };
 
 
-  constructor(private fb: FormBuilder,
+  constructor(private datePipe: DatePipe,
+              private fb: FormBuilder,
               private router: Router,
               private housingServise: HousingService,
               private alertify: AlertifyService) { }
@@ -56,6 +59,17 @@ export class AddPropertyComponent implements OnInit {
       this.cityList = data;
       console.log(data);
     })
+
+
+    this.housingServise.getPropertyTypes().subscribe(data =>{
+      this.propertyTypes = data;
+    })
+
+    this.housingServise.getFurnishingTypes().subscribe(data =>{
+      this.furnishingTypes = data;
+    })
+
+
   }
 
   CreateAddPropertyForm(){
@@ -211,15 +225,19 @@ export class AddPropertyComponent implements OnInit {
     this.nextClicked = true;
     if (this.allTabsValid()) {
       this.mapProperty();
-      this.housingServise.addProperty(this.property);
-      this.alertify.success('Congrats, your property listed successfully on our website')
-      console.log(this.addPropertyForm);
+      this.housingServise.addProperty(this.property).subscribe(
+        () => {
+          this.alertify.success('Congrats, your property listed successfully on our website')
+          console.log(this.addPropertyForm);
 
-      if (this.SellRent.value === '2') {
-        this.router.navigate(['/rent-property'])
-      }else{
-        this.router.navigate(['/'])
-      }
+          if (this.SellRent.value === '2') {
+            this.router.navigate(['/rent-property'])
+          }else{
+            this.router.navigate(['/'])
+          }
+        }
+      );
+
     }else{
      this.alertify.error('Please review the form and provide all valid entries')
 
@@ -229,11 +247,11 @@ export class AddPropertyComponent implements OnInit {
   mapProperty(): void {
     this.property.id = this.housingServise.newPropID();
     this.property.sellRent = +this.SellRent.value;
-    this.property.bHK = this.BHK.value;
-    this.property.propertyType = this.PType.value;
-    this.property.furnishingType = this.FType.value;
+    this.property.bhk = this.BHK.value;
+    this.property.propertyTypesId = this.PType.value;
+    this.property.furnishingTypesId = this.FType.value;
     this.property.name = this.Name.value;
-    this.property.city = this.City.value;
+    this.property.cityId = this.City.value;
     this.property.price = this.Price.value;
     this.property.builtArea = this.BuiltArea.value;
     this.property.carpetArea = this.CarpetArea.value;
@@ -243,8 +261,8 @@ export class AddPropertyComponent implements OnInit {
     this.property.totalFloor = this.TotalFloor.value;
     this.property.address = this.Address.value;
     this.property.landMark = this.LandMark.value;
-    this.property.rTM = this.RTM.value;
-    this.property.possessionOn = this.PossessionOn.value;
+    this.property.rtm = this.RTM.value;
+    this.property.possessionOn = this.datePipe.transform(this.PossessionOn.value,'MM/DD/YYYY') || '{}';
     this.property.aOP = this.AOP.value;
     this.property.gated = this.Gated.value;
     this.property.mainEntrance = this.MainEntrance.value;

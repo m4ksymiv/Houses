@@ -3,10 +3,13 @@ import { IPropertyBase } from "./ipropertybase";
 export class Property implements IPropertyBase{
   id: number;
   sellRent: number;
-  bHK: string;
-  propertyType: string;
-  furnishingType: string;
+  bhk: string;
+  propertyTypesId: number;
+  propertyTypes: string;
+  furnishingTypesId: number;
+  furnishingTypes: string;
   name: string;
+  cityId: number;
   city: string;
   price: string;
   builtArea: string;
@@ -18,8 +21,8 @@ export class Property implements IPropertyBase{
   address:string;
   address2:string;
   landMark:string;
-  rTM:string;
-  possessionOn:Date;
+  rtm:string;
+  possessionOn: string;
   aOP:string;
   gated:string;
   mainEntrance:string;
