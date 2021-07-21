@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { map } from "rxjs/operators";
 import { Observable } from 'rxjs';
 import { IPropertyBase } from '../model/ipropertybase';
@@ -38,7 +38,12 @@ export class HousingService {
   }
 
   addProperty(property: Property) {
-    return this.http.post(this.baseUrl + '/property/add',property);
+    const httpOptions = {
+      headers: new HttpHeaders({
+          Authorization: 'Bearer '+ localStorage.getItem('Token')
+      })
+    };
+    return this.http.post(this.baseUrl + '/property/add',property,httpOptions);
   }
 
 
@@ -52,7 +57,7 @@ export class HousingService {
     }
   }
 
-  getPropertyAge(dateOfEstablishment: string): string{
+  getPropertyAge(dateOfEstablishment: Date): string{
     const today = new Date();
     const estDate = new Date(dateOfEstablishment);
     let age = today.getFullYear() - estDate.getFullYear();

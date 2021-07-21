@@ -53,6 +53,11 @@ export class AddPropertyComponent implements OnInit {
               private alertify: AlertifyService) { }
 
   ngOnInit() {
+
+    if (!localStorage.getItem('userName')) {
+      this.alertify.error('You must be looged in to add a property');
+      this.router.navigate(['/user/login']);
+    }
     this.CreateAddPropertyForm();
 
     this.housingServise.getAllCities().subscribe(data =>{
@@ -262,7 +267,7 @@ export class AddPropertyComponent implements OnInit {
     this.property.address = this.Address.value;
     this.property.landMark = this.LandMark.value;
     this.property.rtm = this.RTM.value;
-    this.property.possessionOn = this.datePipe.transform(this.PossessionOn.value,'MM/DD/YYYY') || '{}';
+    this.property.possessionOn = this.PossessionOn.value;
     this.property.aOP = this.AOP.value;
     this.property.gated = this.Gated.value;
     this.property.mainEntrance = this.MainEntrance.value;

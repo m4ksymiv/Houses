@@ -22,7 +22,7 @@ export class Property implements IPropertyBase{
   address2:string;
   landMark:string;
   rtm:string;
-  possessionOn: string;
+  possessionOn:Date;
   aOP:string;
   gated:string;
   mainEntrance:string;
